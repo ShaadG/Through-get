@@ -1,0 +1,56 @@
+// Appointment class
+class Appointment {
+  constructor(id, date, time, patient, practitioner) {
+    this.id = id;
+    this.date = date;
+    this.time = time;
+    this.patient = patient;
+    this.practitioner = practitioner;
+  }
+}
+
+// Sample appointments data
+let appointments = [
+  new Appointment(1, "2022-01-01", "09:00", "John Smith", "Dr. Jane Doe"),
+  new Appointment(2, "2022-01-02", "10:00", "Jane Smith", "Dr. John Doe"),
+  new Appointment(3, "2022-01-03", "11:00", "Bob Johnson", "Dr. Sarah Lee"),
+  new Appointment(4, "2022-01-04", "12:00", "Amy Williams", "Dr. Michael Brown")
+];
+
+// Function to display appointments in the dashboard
+function displayAppointments() {
+  let table = document.getElementById("appointment-table");
+  table.innerHTML = "";
+  for (let appointment of appointments) {
+    let row = table.insertRow();
+    let idCell = row.insertCell(0);
+    let dateCell = row.insertCell(1);
+    let timeCell = row.insertCell(2);
+    let patientCell = row.insertCell(3);
+    let practitionerCell = row.insertCell(4);
+    let actionCell = row.insertCell(5);
+
+    idCell.innerHTML = appointment.id;
+    dateCell.innerHTML = appointment.date;
+    timeCell.innerHTML = appointment.time;
+    patientCell.innerHTML = appointment.patient;
+    practitionerCell.innerHTML = appointment.practitioner;
+    actionCell.innerHTML = `<button onclick="editAppointment(${appointment.id})">Edit</button>
+                            <button onclick="deleteAppointment(${appointment.id})">Delete</button>`;
+  }
+}
+
+// Function to edit an appointment
+function editAppointment(id) {
+  // Code to open the edit form and populate it with the selected appointment's data
+}
+
+// Function to delete an appointment
+function deleteAppointment(id) {
+  let index = appointments.findIndex(appointment => appointment.id === id);
+  appointments.splice(index, 1);
+  displayAppointments();
+}
+
+// Call the displayAppointments function to display the appointments in the dashboard
+displayAppointments();
